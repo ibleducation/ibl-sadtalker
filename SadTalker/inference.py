@@ -17,7 +17,10 @@ def main(args):
 
     pic_path = args.source_image
     audio_path = args.driven_audio
-    save_dir = os.path.join(args.result_dir, strftime("%Y_%m_%d_%H.%M.%S"))
+    if not hasattr(args, "output_filename"):
+        save_dir = os.path.join(args.result_dir, strftime("%Y_%m_%d_%H.%M.%S"))
+    else:
+        save_dir = os.path.join(args.result_dir, args.output_filename.strip(".mp4"))
     os.makedirs(save_dir, exist_ok=True)
     pose_style = args.pose_style
     device = args.device
