@@ -8,7 +8,7 @@ from pathlib import Path
 from .download_models import download_models
 logger = logging.getLogger(__name__)
 
-BASE_DIR = Path.cwd()
+BASE_DIR = Path(__file__).parent
 
 
 class Inference:
@@ -97,7 +97,7 @@ class Inference:
         """
         if not output_filename:
             output_filename = strftime("%Y_%m_%d_%H.%M.%S") + ".mp4"
-        checkpoint_path = str(checkpoint_path)
+        checkpoint_dir = str(checkpoint_dir)
         self.args = Namespace(
             driven_audio=driven_audio,
             source_image=source_image,
@@ -133,17 +133,20 @@ class Inference:
             z_near=z_near,
             z_far=z_far,
             init_path=init_path,
-            bfm_folder=bfm_folder,
+            current_root_path=str(BASE_DIR),
         )
 
-        self.check_required_files
+        self.check_required_files(checkpoint_path=checkpoint_dir)
 
     def check_required_files(self, checkpoint_path) -> bool:
+        print("[checking for file download]")
         return download_models()
 
     def run(self) -> str:
+        print("[EXECUTING INFERENCE.RUN]")
+
         try:
             main(self.args)
         except Exception as e:
             logger.exception(e)
-        return self.args.output_filename
+        return str(Path(self.args.result_dir) / self.args.output_filename)

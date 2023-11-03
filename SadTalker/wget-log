@@ -1,0 +1,21 @@
+--2023-11-02 21:09:22--  https://github.com/OpenTalker/SadTalker/releases/download/v0.0.2-rc/SadTalker_V0.0.2_512.safetensors
+Resolving github.com (github.com)... 140.82.121.3
+Connecting to github.com (github.com)|140.82.121.3|:443... connected.
+HTTP request sent, awaiting response... 302 Found
+Location: https://objects.githubusercontent.com/github-production-release-asset-2e65be/569518584/920c0f45-4f3b-43a6-98a7-6a1899d5e0f6?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231102%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231102T210923Z&X-Amz-Expires=300&X-Amz-Signature=4eee65b28ee2e9dd5fba7ac62e2f88c03b225f1431ae53e461825d8670ba130c&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=569518584&response-content-disposition=attachment%3B%20filename%3DSadTalker_V0.0.2_512.safetensors&response-content-type=application%2Foctet-stream [following]
+--2023-11-02 21:09:23--  https://objects.githubusercontent.com/github-production-release-asset-2e65be/569518584/920c0f45-4f3b-43a6-98a7-6a1899d5e0f6?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231102%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231102T210923Z&X-Amz-Expires=300&X-Amz-Signature=4eee65b28ee2e9dd5fba7ac62e2f88c03b225f1431ae53e461825d8670ba130c&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=569518584&response-content-disposition=attachment%3B%20filename%3DSadTalker_V0.0.2_512.safetensors&response-content-type=application%2Foctet-stream
+Resolving objects.githubusercontent.com (objects.githubusercontent.com)... 185.199.108.133, 185.199.109.133, 185.199.110.133, ...
+Connecting to objects.githubusercontent.com (objects.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 725066984 (691M) [application/octet-stream]
+Saving to: ‘./checkpoints/SadTalker_V0.0.2_512.safetensors’
+
+er_V0.0.2_512.safetensors   1%[                                   ]  12.37M  --.-KB/s    eta 5d 2h  ./checkpoints/SadTalker_V   1%[                                   ]  12.37M  --.-KB/s    in 2h 14m  
+
+2023-11-02 23:23:46 (1.57 KB/s) - Read error at byte 12967296/725066984 (Connection timed out). Retrying.
+
+--2023-11-02 23:23:47--  (try: 2)  https://objects.githubusercontent.com/github-production-release-asset-2e65be/569518584/920c0f45-4f3b-43a6-98a7-6a1899d5e0f6?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20231102%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20231102T210923Z&X-Amz-Expires=300&X-Amz-Signature=4eee65b28ee2e9dd5fba7ac62e2f88c03b225f1431ae53e461825d8670ba130c&X-Amz-SignedHeaders=host&actor_id=0&key_id=0&repo_id=569518584&response-content-disposition=attachment%3B%20filename%3DSadTalker_V0.0.2_512.safetensors&response-content-type=application%2Foctet-stream
+Connecting to objects.githubusercontent.com (objects.githubusercontent.com)|185.199.108.133|:443... connected.
+HTTP request sent, awaiting response... 401 Unauthorized
+
+Username/Password Authentication Failed.

@@ -5,16 +5,15 @@ from time import  strftime
 import os, sys, time
 from argparse import ArgumentParser
 
-from src.utils.preprocess import CropAndExtract
-from src.test_audio2coeff import Audio2Coeff  
-from src.facerender.animate import AnimateFromCoeff
-from src.generate_batch import get_data
-from src.generate_facerender_batch import get_facerender_data
-from src.utils.init_path import init_path
+from SadTalker.src.utils.preprocess import CropAndExtract
+from SadTalker.src.test_audio2coeff import Audio2Coeff  
+from SadTalker.src.facerender.animate import AnimateFromCoeff
+from SadTalker.src.generate_batch import get_data
+from SadTalker.src.generate_facerender_batch import get_facerender_data
+from SadTalker.src.utils.init_path import init_path
 
 def main(args):
     #torch.backends.cudnn.enabled = False
-
     pic_path = args.source_image
     audio_path = args.driven_audio
     if not hasattr(args, "output_filename"):
@@ -31,14 +30,24 @@ def main(args):
     ref_eyeblink = args.ref_eyeblink
     ref_pose = args.ref_pose
 
-    current_root_path = os.path.split(sys.argv[0])[0]
-
+    if hasattr(args, "current_root_path"):
+        current_root_path = args.current_root_path
+    else:
+        current_root_path = os.path.split(sys.argv[0])[0]
+    print("[EXECUTING RUN]")
     sadtalker_paths = init_path(args.checkpoint_dir, os.path.join(current_root_path, 'src/config'), args.size, args.old_version, args.preprocess)
 
+    print(sadtalker_paths)
+    print("checkpoint", args.checkpoint_dir)
     #init model
+    print("[EXECUTING crop]")
+
     preprocess_model = CropAndExtract(sadtalker_paths, device)
 
+    print("[EXECUTING crAudio2Coeff]")
+
     audio_to_coeff = Audio2Coeff(sadtalker_paths,  device)
+    print("[EXECUTING Animate From Coeff]")
     
     animate_from_coeff = AnimateFromCoeff(sadtalker_paths, device)
 
@@ -79,7 +88,7 @@ def main(args):
 
     # 3dface render
     if args.face3dvis:
-        from src.face3d.visualize import gen_composed_video
+        from SadTalker.src.face3d.visualize import gen_composed_video
         gen_composed_video(args, device, first_coeff_path, coeff_path, audio_path, os.path.join(save_dir, '3dface.mp4'))
     
     #coeff2video
