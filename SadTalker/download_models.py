@@ -36,8 +36,7 @@ def download_models(directory: Path | str = current_directory,) -> bool:
     """
     if not check_checkpoint_files():
         print("Calling downloads. with path: " + str(directory))
-        raise Exception("Calling downloads " + str(directory))
-        # subprocess.call(
-        #     ["sh", "./scripts/download_models.sh"], cwd=str(directory)
-        # )
+        subprocess.call(
+            ["sh", "./scripts/download_models.sh"], cwd=str(directory)
+        )
     return check_checkpoint_files()
