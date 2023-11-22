@@ -6,6 +6,7 @@ from argparse import Namespace
 import logging
 from pathlib import Path
 from .download_models import download_models
+
 logger = logging.getLogger(__name__)
 
 BASE_DIR = Path(__file__).parent
@@ -136,7 +137,11 @@ class Inference:
             current_root_path=str(BASE_DIR),
         )
 
-        self.check_required_files(checkpoint_path=checkpoint_dir)
+        if not self.check_required_files(checkpoint_path=checkpoint_dir):
+            raise Exception(
+                "Required files not found. Please run and AI_PLUS_VIDEO_APP_AUTO_DOWNLOAD_SADTALKER_MODEL"
+                "is set as False."
+            )
 
     def check_required_files(self, checkpoint_path) -> bool:
         print("[checking for file download]")

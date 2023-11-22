@@ -2,6 +2,13 @@ import subprocess
 from pathlib import Path
 import logging
 import os
+
+try:
+    from django.conf import settings
+except ImportError:
+    settings = None
+
+
 logger = logging.getLogger(__name__)
 
 current_directory = Path(__file__).parent
@@ -23,7 +30,10 @@ def check_checkpoint_files():
             return False
     return True
 
-def download_models(directory: Path | str = current_directory,) -> bool:
+
+def download_models(
+    directory: Path | str = current_directory,
+) -> bool:
     """
     Downloads models from a specified directory.
     This calls the bash script packaged as part of SadTalker.
@@ -34,10 +44,11 @@ def download_models(directory: Path | str = current_directory,) -> bool:
     Returns:
         bool: True if the download was successful, False otherwise.
     """
-
-    if not check_checkpoint_files() and os.getenv("AI_PLUS_VIDEO_APP_AUTO_DOWNLOAD_SADTALKER_MODEL") in ["True", "true", True]:
+    if settings:
+        auto_download_models = settings.AI_PLUS_VIDEO_APP_AUTO_DOWNLOAD_SADTALKER_MODEL
+    else:
+        auto_download_models = os.getenv("AI_PLUS_VIDEO_APP_AUTO_DOWNLOAD_SADTALKER_MODEL") in ["True", "true", True]
+    if (not check_checkpoint_files()) and auto_download_models:
         print("Calling downloads. with path: " + str(directory))
-        subprocess.call(
-            ["sh", "./scripts/download_models.sh"], cwd=str(directory)
-        )
+        subprocess.call(["sh", "./scripts/download_models.sh"], cwd=str(directory))
     return check_checkpoint_files()
